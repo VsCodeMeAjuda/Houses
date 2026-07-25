@@ -15,6 +15,7 @@ export type View =
   | 'calendar'
   | 'notifications'
   | 'documents'
+  | 'maintenance'
   | 'backup'
   | 'settings'
 
@@ -85,6 +86,7 @@ export const viewTitles: Record<View, string> = {
   calendar: 'Calendário',
   notifications: 'Notificações',
   documents: 'Documentos',
+  maintenance: 'Manutenção',
   backup: 'Backup & Exportação',
   settings: 'Configurações',
 }

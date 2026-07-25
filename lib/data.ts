@@ -74,6 +74,23 @@ export interface Expense {
   date: string
 }
 
+export type MaintenancePriority = 'low' | 'medium' | 'high' | 'urgent'
+export type MaintenanceStatus = 'pending' | 'in-progress' | 'completed'
+
+export interface MaintenanceTask {
+  id: string
+  propertyId: string
+  title: string
+  description: string
+  priority: MaintenancePriority
+  status: MaintenanceStatus
+  createdDate: string
+  dueDate: string | null
+  estimatedCost: number
+  actualCost: number
+  notes: string
+}
+
 export type ActivityType =
   | 'payment'
   | 'tenant'
@@ -376,6 +393,61 @@ export const expenses: Expense[] = [
   },
 ]
 
+export const maintenanceTasks: MaintenanceTask[] = [
+  {
+    id: 'm1',
+    propertyId: 'p3',
+    title: 'Reparo hidráulico no banheiro',
+    description: 'Vazamento na tubulação do banheiro social precisa de reparo imediato.',
+    priority: 'high',
+    status: 'completed',
+    createdDate: d(-12),
+    dueDate: d(-6),
+    estimatedCost: 800,
+    actualCost: 890,
+    notes: 'Substituída a conexão do registro. Garantia de 6 meses.',
+  },
+  {
+    id: 'm2',
+    propertyId: 'p2',
+    title: 'Manutenção do jardim',
+    description: 'Poda das árvores e limpeza geral da área externa.',
+    priority: 'low',
+    status: 'in-progress',
+    createdDate: d(-8),
+    dueDate: d(2),
+    estimatedCost: 350,
+    actualCost: 0,
+    notes: '',
+  },
+  {
+    id: 'm3',
+    propertyId: 'p4',
+    title: 'Pintura completa do studio',
+    description: 'Repintura de todas as paredes antes de nova locação.',
+    priority: 'medium',
+    status: 'pending',
+    createdDate: d(-3),
+    dueDate: d(14),
+    estimatedCost: 2800,
+    actualCost: 0,
+    notes: 'Aguardando orçamento do fornecedor.',
+  },
+  {
+    id: 'm4',
+    propertyId: 'p1',
+    title: 'Troca do disjuntor geral',
+    description: 'Quadro de energia apresentando falhas intermitentes.',
+    priority: 'urgent',
+    status: 'pending',
+    createdDate: d(-1),
+    dueDate: d(3),
+    estimatedCost: 450,
+    actualCost: 0,
+    notes: '',
+  },
+]
+
 export const activities: Activity[] = [
   {
     id: 'a1',
@@ -537,6 +609,19 @@ export const paymentStatusLabels: Record<PaymentStatus, string> = {
   'due-soon': 'A vencer',
   overdue: 'Em atraso',
   pending: 'Pendente',
+}
+
+export const maintenancePriorityLabels: Record<MaintenancePriority, string> = {
+  low: 'Baixa',
+  medium: 'Média',
+  high: 'Alta',
+  urgent: 'Urgente',
+}
+
+export const maintenanceStatusLabels: Record<MaintenanceStatus, string> = {
+  pending: 'Pendente',
+  'in-progress': 'Em andamento',
+  completed: 'Concluída',
 }
 
 // ---------- Monthly series (last 8 months) ----------

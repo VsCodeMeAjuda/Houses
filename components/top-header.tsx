@@ -2,10 +2,11 @@
 
 import { Menu, Settings } from 'lucide-react'
 import { useApp, viewTitles } from './app-context'
-import { properties } from '@/lib/data'
+import { useData } from './data-context'
 
 export function TopHeader() {
   const { setMenuOpen, view, setView, selectedPropertyId } = useApp()
+  const { properties } = useData()
 
   const title = selectedPropertyId
     ? (properties.find((p) => p.id === selectedPropertyId)?.name ?? 'Imóvel')

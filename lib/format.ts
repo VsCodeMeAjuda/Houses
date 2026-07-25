@@ -41,6 +41,18 @@ export function daysUntil(iso: string): number {
   return Math.round((target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
 }
 
+export function toDateInputValue(iso: string | null): string {
+  if (!iso) return ''
+  const date = new Date(iso)
+  if (Number.isNaN(date.getTime())) return ''
+  return date.toISOString().slice(0, 10)
+}
+
+export function fromDateInputValue(value: string): string {
+  if (!value) return new Date().toISOString()
+  return new Date(`${value}T00:00:00`).toISOString()
+}
+
 export function relativeTime(iso: string): string {
   const diff = daysUntil(iso)
   if (diff === 0) return 'Hoje'

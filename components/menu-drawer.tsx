@@ -13,13 +13,15 @@ import {
   Settings,
   ChevronRight,
   Building2,
+  Wrench,
 } from 'lucide-react'
 import { useApp, type View } from './app-context'
-import { notifications } from '@/lib/data'
+import { useData } from './data-context'
 
 const items: { view: View; label: string; icon: typeof FileText }[] = [
   { view: 'contracts', label: 'Contratos', icon: FileText },
   { view: 'expenses', label: 'Despesas', icon: Receipt },
+  { view: 'maintenance', label: 'Manutenção', icon: Wrench },
   { view: 'future-revenue', label: 'Receita Futura', icon: TrendingUp },
   { view: 'payment-history', label: 'Histórico de Pagamentos', icon: History },
   { view: 'calendar', label: 'Calendário', icon: Calendar },
@@ -31,6 +33,7 @@ const items: { view: View; label: string; icon: typeof FileText }[] = [
 
 export function MenuDrawer() {
   const { menuOpen, setMenuOpen, setView } = useApp()
+  const { notifications } = useData()
   const unread = notifications.filter((n) => !n.read).length
 
   if (!menuOpen) return null
